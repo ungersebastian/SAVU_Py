@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: SAVU-Py
+Version: 0.0.0.dev1
+Summary: A package for spectral analsis.
+Home-page: UNKNOWN
+Author: Sebastian Unger
+Author-email: basti.unger@googlemail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+This is a package for spectral analysis in Python.
+
