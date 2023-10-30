@@ -17,14 +17,14 @@ import numpy as np
 import savu_py as sap
 
 def from_Witec_head(fname, path = os.getcwd(), kind='scan'):
-    f = open(path + '/' + fname);
-    f = f.readlines();
+    with open(os.path.join(path, fname), 'r') as file:
+        f = file.readlines()
     
     head_read = dict(filter(lambda x : len(x) > 1 , map(lambda y : y.split(' = '), f)))
-    paraWitec  = read_Spc(head_read, kind)
-    print(paraWitec)
-    xValues = np.loadtxt(path + '/' + paraWitec.pop('xValues'))
-    yValues = np.loadtxt(path + '/' + paraWitec.pop('yValues'))
+    paraWitec  = read_spc(head_read, kind, fname)
+    
+    xValues = np.loadtxt(os.path.join(path, paraWitec.pop('xValues')))
+    yValues = np.loadtxt(os.path.join(path, paraWitec.pop('yValues')))
     
     yValues = np.reshape(yValues, (paraWitec['xPix'], paraWitec['yPix'], paraWitec['channal'] ))
     
@@ -73,11 +73,11 @@ def header_Witec(filename, path=os.getcwd(), kind='no scan'):
     # convertion of internal list to dict
     
     head_read = dict(filter(lambda x : len(x) > 1 , map(lambda y : y.split(' = '), f)))
-    paraWitec = read_Spc(head_read, kind)
+    paraWitec = read_spc(head_read, kind)
     return (paraWitec, path)
 
 # function for reading the information of Witec_headers
-def read_Spc(Witec_head, kind):
+def read_spc(Witec_head, kind, fname = ''):
     '''
     Reading of spectral data from Witec export with header file
     params:
@@ -89,13 +89,22 @@ def read_Spc(Witec_head, kind):
             values     ... list of values
     '''
     values={};
-    if 'GraphName' in Witec_head :
-        xValues = Witec_head['GraphName'].split('\n')[0] + ' (X-Axis).txt'
-        yValues = Witec_head['GraphName'].split('\n')[0] + ' (Y-Axis).txt'
+    if fname == '':
+        if 'GraphName' in Witec_head :
+            head = Witec_head['GraphName'].split('\n')[0]
+            xValues = head + ' (X-Axis).txt'
+            yValues = head + ' (Y-Axis).txt'
+            values["xValues"] = xValues
+            values["yValues"] = yValues
+        else:
+            raise ValueError('No such string: GraphName')
+    else:
+        print('here')
+        head = fname.split('(Header).txt')[0]
+        xValues = head + '(X-Axis).txt'
+        yValues = head + '(Y-Axis).txt'
         values["xValues"] = xValues
         values["yValues"] = yValues
-    else:
-        raise ValueError('No such string: GraphName')
     
     if 'XAxisUnit' in Witec_head :
         xUnit = Witec_head['XAxisUnit'].split('\n')[0]
@@ -116,10 +125,10 @@ def scan_Witec(Witec_head, values):
     Reading only spectral date from Witec export of image scans with header files 
     params:
         expect
-            Witec_head ... dictionary of keys and values extrakted vom Witec header prefiled from read_Spc
-            values     ... list of values prefiled by read_Spc
+            Witec_head ... dictionary of keys and values extrakted vom Witec header prefiled from read_spc
+            values     ... list of values prefiled by read_spc
         return
-            values     ... list of values (from read_Spc and scan params)
+            values     ... list of values (from read_spc and scan params)
     '''    
     # Parameters for determination of map-demention and pixelsize
     # map-dimension number of pixels
@@ -169,10 +178,10 @@ def spc_Witec(Witec_head, values):
     Reading only spectral data from Witec export of single or series spectral data with header files 
     params:
         expect
-            Witec_head ... dictionary of keys and values extrakted vom Witec header prefiled from read_Spc
-            values     ... list of values prefiled by read_Spc
+            Witec_head ... dictionary of keys and values extrakted vom Witec header prefiled from read_spc
+            values     ... list of values prefiled by read_spc
         return
-            values     ... list of values (from read_Spc only or with values of series data)
+            values     ... list of values (from read_spc only or with values of series data)
     '''    
     #if 'SizeX' && 'SizeY' in Witec_head && Witec_head['SizeX'].split('\n')[0] >= 1 && Witec_head['SizeX'].split('\n')[0] != Witec_head['SizeY'].split('\n')[0]:
     if 'SeriesUnit' in Witec_head:

@@ -1,0 +1,214 @@
+
+;ANFATEC Parameterfile
+
+Version : 1.12
+VistaScanVersion : 2.0.0.39
+Date : 03/03/2020
+Time : 12:03:35 PM
+UTCDateTime : 2020/03/03 11:03:35
+UserName : Daniela
+ComputerName : 
+SampleName : Ret24
+CantileverType : NCHPt
+CantileverID : NCHPt_dt1
+Lens : None
+Scanner : Scanner
+Scanner calibration : Scanner parameters from VS22 12APR18.ini
+Objective calibration : softlinObjective.ini
+Head calibration : softlinHead.ini
+Lockin calibration : controller_574-580-549-16.ini
+StartDate : 12/30/1899
+StartTime : 12:00:00 AM
+
+FeedbackMode     : pifm_hypir
+FeedbackModePiFM : 22
+SetPoint         : 85
+SetPointPhysUnit : V
+FeedBackModus    : ncAFM R
+Bias             : 0
+BiasPhysUnit     : mV
+Ki               : 1000
+Kp               : 1
+
+FastZKi    : 0.2
+FastZKp    : 0
+FastZTd    : 0
+FastZAlpha : 3
+
+XStage     : 79962.60701 ; µm
+YStage     : 80081.892815 ; µm
+XScanRange : 2.6
+YScanRange : 2.6
+XPhysUnit  : µm
+YPhysUnit  : µm
+Speed      : 0.2 ; lines/sec
+Angle      : 0 ; degrees
+xPixel     : 32
+yPixel     : 32
+yCenter    : -0.6
+xCenter    : 16.8
+dzdx       : 0
+dzdy       : 0
+overscan[%]: 2.5
+
+LockInFreq         : 1685187.375
+LockInFreqPhysUnit : Hz
+LockInAmpl         : 0.0826959542500969
+LockInAmplPhysUnit : V
+
+TimeConstant  : 100ms
+RollOff       : 12 db/oct
+DetectionFrequency : 266300
+Laser1State     : On
+Laser1Name     : Block Engineering LaserTune LT-OEM [Q0252]
+Laser1LaserWavelength: 7412.89844329133 ; nm
+Laser1DutyCycle : 30 ; %
+Laser1VoltageLow: 0.5 ; V
+Laser1VoltageHigh: 5 ; V
+Laser1Frequency : 1418887.375 ; Hz
+
+BottomObjectiveFocus : 0 ; µm
+FileDesc2Begin
+FileName : Ret240033hyPIRFwd.int
+Caption  : hyPIRFwd
+BytesPerPixel : 1180
+Scale    : 1e-9
+PhysUnit : V
+Offset   : 0
+DataType : Spectrogram
+BytesPerReading : 4
+FileNameWavelengths : Ret240033hyPIRFwdWavelengths.txt
+PhysUnitWavelengths : 1/cm
+FileDesc2End
+
+FileDescBegin
+FileName : Ret240033TopographyFwd.int
+Caption  : TopographyFwd
+Scale    : 3.9014e-6
+PhysUnit : nm
+Offset   : 0
+FileDescEnd
+
+FileDescBegin
+FileName : Ret240033AFMHead-ZFwd.int
+Caption  : AFMHead-ZFwd
+Scale    : -2.834e-7
+PhysUnit : nm
+Offset   : 0
+FileDescEnd
+
+FileDescBegin
+FileName : Ret240033Scanner-ZFwd.int
+Caption  : Scanner-ZFwd
+Scale    : -3.618e-6
+PhysUnit : nm
+Offset   : 0
+FileDescEnd
+
+FileDescBegin
+FileName : Ret240033PhaseFwd.int
+Caption  : PhaseFwd
+Scale    : 1e-3
+PhysUnit : °
+Offset   : 0
+FileDescEnd
+
+FileDescBegin
+FileName : Ret240033PiFFwd.int
+Caption  : PiFFwd
+Scale    : 3.01143288806455e-9
+PhysUnit : V
+Offset   : 0
+FileDescEnd
+
+
+AFMSpectrumDescBegin
+FileName  : Ret240033powerspectrum.txt
+SpectrumType: Optical
+AFMSpectrumDescEnd
+
+;(at 2020/03/02 21:22:35): Apply parameters (SetFeedback)
+;  Scan position: line=255 dir=Down
+;  feedbackmode=4
+;  setpoint=85
+;  ki=1000
+;  kp=1
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Apply parameters (SetFeedback)
+;  Scan position: line=255 dir=Down
+;  feedbackmode=4
+;  setpoint=85
+;  ki=1000
+;  kp=1
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Apply parameters (SetFeedback)
+;  Scan position: line=255 dir=Down
+;  feedbackmode=4
+;  setpoint=85
+;  ki=1000
+;  kp=1
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Apply parameters (SetFeedback)
+;  Scan position: line=255 dir=Down
+;  feedbackmode=4
+;  setpoint=85
+;  ki=1000
+;  kp=1
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Apply parameters (SetFeedback)
+;  Scan position: line=255 dir=Down
+;  feedbackmode=4
+;  setpoint=85
+;  ki=1000
+;  kp=1
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/02 21:22:35): Set cantilever drive voltage (with specified scale)
+;  Scan position: line=255 dir=Down
+;  voltage = 0.0826959542500969
+;(at 2020/03/03 12:03:35): Completed scan

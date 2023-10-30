@@ -26,7 +26,7 @@ def anfatec(path = None, *args, **kwargs):
         join(directory, f), # absolute path
         splitext(f)[1]      # filename without extention
         ) for f in listdir(directory) if isfile(join(directory, f))])
-    
+    print(path)
     # open the headerfile
     with open(path, 'r') as fopen:
         header_list = np.array(fopen.readlines())
