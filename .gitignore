@@ -1,5 +1,5 @@
-SpectralAnalysisPack.egg-info
-/SpectralAnalysisPack/.spyproject
-/SpectralAnalysisPack/__pycache__
-/SpectralAnalysisPack/resources/__pycache__
-/SpectralAnalysisPack/utils/__pycache__
+papers
+savu_py/resources
+.idea
+.spyproject
+SAVU_Py.egg-info
