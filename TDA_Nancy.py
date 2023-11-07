@@ -34,3 +34,4 @@ print(f_rl)
 
 
 
+np.save('raman.npy',np.reshape(my_spc_real.spc.values, (145,145,1024)))
