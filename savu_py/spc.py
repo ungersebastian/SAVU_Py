@@ -558,7 +558,6 @@ class spc(pd.DataFrame):
                 else:
                     warnings.warn('key error')
             elif isinstance(key[0], (int,list,np.ndarray,slice,np.integer)):
-                print(key)
                 key = tuple(( 
                     k if not isinstance(k, (slice,int, np.integer)) 
                     else slice(k.start, k.stop-1, k.step) if isinstance(k, slice)
@@ -1010,3 +1009,21 @@ class spc(pd.DataFrame):
             return self.values.flat <= data.flat
         else:
             return self.values.flat <= data
+        
+    def __eq__(self, data):
+        if hasattr(data, 'flat'):
+            return self.values.flat == data.flat
+        else:
+            return self.values.flat == data
+
+    def __ne__(self, data):
+        if hasattr(data, 'flat'):
+            return self.values.flat != data.flat
+        else:
+            return self.values.flat != data
+        
+    def __xor__(self, data):
+        if hasattr(data, 'flat'):
+            return self.values.flat ^ data.flat
+        else:
+            return self.values.flat ^ data

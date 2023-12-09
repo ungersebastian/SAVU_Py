@@ -107,7 +107,7 @@ print(small_spc_3)
 # wavelength indexing
 small_spc_4 = my_spc['wl',5]
 print(small_spc_4)
-small_spc_5 = my_spc['wl',2:5, 0, [0,1,2,3],0.2, 0.7]
+small_spc_5 = my_spc['wl',2:5]
 print(small_spc_5)
 #%%
 

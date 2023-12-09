@@ -4,6 +4,20 @@
   This work is based on the pandas dataframe.<br>
 
 This is just a prototype. <br>
+ <br> <br>
+Current to-do list (as observed): <br>
+  - repr for empty frames<br>
+  - bugfix in repr for lables <br>
+  - add more operators from https://docs.python.org/3/library/operator.html ~ Mapping Operators to Functions  <br>
+
+ <br> <br>
+ 
+ Current updates:<br>
+   - eq, ne, xor methods (DONE: 23_12_09)<br>
+   
+   <br>
+   <br>
+
 Example: reading a hyperspectral image from Witec confocal microscope:<br>
 
 IN: my_spc = savu.read.from_Witec_head(fname, path)<br>
