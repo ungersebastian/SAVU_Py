@@ -713,9 +713,15 @@ class spc(pd.DataFrame):
             self.ga._reserved_attr['n_wl'] = wavelength.size   
             self.ga.is_empty = False
         else:
+           
             value = self.__reshape_data(np.array(value))
             val_shape = np.array(value).shape
-            if key in self.get_labels():
+            if isinstance(key, (int,list,np.ndarray,slice,np.integer)):
+                if len(value)==1:
+                    value = np.full(len(key), value)
+                
+                pd.DataFrame.__setitem__(self, key = key, value = value)
+            elif key in self.get_labels():
                 
                 key_list = self.get_col_idx(key)
                 n_keys = len(key_list)
@@ -731,7 +737,9 @@ class spc(pd.DataFrame):
                     else:
                         self.__delitem__(key)
                         self.add_label(key, value)
-             
+            
+                    
+                    
             else:
                 self.add_label(key, value)
             
@@ -998,13 +1006,13 @@ class spc(pd.DataFrame):
         else:
             return self.values.flat >= data
     
-    def __st__(self, data):
+    def __lt__(self, data):
         if hasattr(data, 'flat'):
             return self.values.flat < data.flat
         else:
             return self.values.flat < data
     
-    def __se__(self, data):
+    def __le__(self, data):
         if hasattr(data, 'flat'):
             return self.values.flat <= data.flat
         else:

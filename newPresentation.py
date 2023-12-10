@@ -68,14 +68,13 @@ my_spc.ga(key, val)
 my_spc.ga.k2 = 23
 print(my_spc)
 
-#%%
 # labels
 
 # setting an label
 tf = np.random.rand(n_rows)
 my_spc['TrueFalse'] = tf
 
-tf[tf>0.5]=True
+tf[tf<0.5]=True
 tf[tf!=True]=False
 
 my_spc.tf = tf.astype(bool)
@@ -85,14 +84,17 @@ g = np.reshape(g, shape[:-1])
 print(my_spc)
 
 
-#%%
-
 # getting object
 
 # using labels
-small_spc_1 = my_spc[my_spc.TrueFalse>0.5] # direct comparisson of values without using .values
+small_spc_1 = my_spc[my_spc.TrueFalse<0.5] # direct comparisson of values without using .values
 print(small_spc_1)
+my_spc['tf',my_spc.TrueFalse<0.5]
 
+#%%
+
+#my_spc[my_spc.TrueFalse<0.5].tf = 2
+my_spc.loc[np.arange(len(my_spc)).astype(int)[my_spc.TrueFalse<0.5], 'tf'] = 2
 #%%
 # image slicing
 small_spc_2 = my_spc[1:6, 2:4]

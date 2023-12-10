@@ -9,7 +9,7 @@ Current to-do list (as observed): <br>
   - repr for empty frames<br>
   - bugfix in repr for lables <br>
   - add more operators from https://docs.python.org/3/library/operator.html ~ Mapping Operators to Functions  <br>
-
+  - setitem for spc[spc.label1 > 4].label2 = 2 (!!!!)
  <br> <br>
  
  Current updates:<br>
