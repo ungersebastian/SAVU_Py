@@ -89,7 +89,6 @@ print(my_spc)
 # using labels
 small_spc_1 = my_spc[my_spc.TrueFalse<0.5] # direct comparisson of values without using .values
 print(small_spc_1)
-my_spc['tf',my_spc.TrueFalse<0.5]
 
 #%%
 

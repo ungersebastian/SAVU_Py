@@ -224,6 +224,7 @@ class spc(pd.DataFrame):
             self.ga.is_spc = True
         else:
             self.ga.is_spc = False
+        return self
 
             
     def __ga__(self, name):
@@ -484,6 +485,7 @@ class spc(pd.DataFrame):
         
         """
         
+        """
         obj = self.__copy__()
         obj._reserved_attr = copy.deepcopy(self._reserved_attr)
         obj._custom_attr = copy.deepcopy(self._custom_attr)
@@ -492,40 +494,53 @@ class spc(pd.DataFrame):
         new_ga = __get_attribute__(obj)
         obj.ga = new_ga
         obj.__update__()
+        """
         
         if isinstance(key, MISlice):
             try:
-                obj = obj.loc[key.slice_matrix]
+                return self.loc[key.slice_matrix].__update__()
             except:
                 warnings.warn('Key not in rows')
         elif isinstance(key, pd.MultiIndex):
             try:
-                obj =  pd.DataFrame.__getitem__(obj, key)
+                return pd.DataFrame.__getitem__(self, key).__update__()
             except:
                 warnings.warn('Key not in rows')
         
         elif isinstance(key, int):
-            obj =  obj.iloc()[key:key+1,:]
+            return self.iloc()[key:key+1,:].__update__()
         
         elif isinstance(key, (slice, list)):
-            obj =  obj.iloc()[key,:]
+            return self.iloc()[key,:].__update__()
         
         elif isinstance(key, str):
-            keys = obj.get_labels()
+            keys = self.get_labels()
             if key in keys:
-                mi = obj.get_col_idx(key)
-                obj =  pd.DataFrame.__getitem__(obj,mi)
+                mi = self.get_col_idx(key)
+                return pd.DataFrame.__getitem__(self,mi).__update__()
+                """
                 if key != 'spc':
                     obj.ga.is_spc = False
                     obj.ga.wavelength = None
                     obj.ga.unit_wl = None
                     obj.ga.n_wl = None
+                """
             else:
                 warnings.warn('Item not found!')
                 
         elif isinstance(key, tuple):
             if isinstance(key[0], str):
-                if key[0] == 'wl':
+                if key[0] == 'wl': ########### IDEA: SAVE WL AS SPC-HEAD --> no  need as separete field + autoupdate
+                    
+                    obj = self.__copy__()
+                    obj._reserved_attr = copy.deepcopy(self._reserved_attr)
+                    obj._custom_attr = copy.deepcopy(self._custom_attr)
+                    obj._pd_attr = copy.deepcopy(self._pd_attr)
+                    
+                    new_ga = __get_attribute__(obj)
+                    obj.ga = new_ga
+                    obj.__update__()
+                    
                     wl_list = key[1:]
                     where = []
                     for k in wl_list:
@@ -537,24 +552,29 @@ class spc(pd.DataFrame):
                     obj.spc = tmp.spc.values
                     obj.ga.wavelength = tmp.ga.wavelength
                     obj.ga.n_wl = tmp.ga.n_wl
-                elif len(key) >= 2:
-                    col_idx = obj.get_col_idx(key[0])
+                    
+                    return obj
+                elif len(key) >= 2:  ##### NEEDS IMPROVEMENT
+                    col_idx = self.get_col_idx(key[0])
                     n_entry = len(col_idx)
                     
                     where = []
                     for k in key[1:]:
-                         where.append(obj.__get_idx_idx__(k,n_entry))
+                         where.append(self.__get_idx_idx__(k,n_entry))
                          
                     where = np.concatenate(where)
                     where = np.unique(np.sort(where))
                     
-                    tmp = pd.DataFrame.__getitem__(obj, col_idx[where])
+                    tmp = pd.DataFrame.__getitem__(self, col_idx[where]).__update__()
                     
-                    obj[key[0]] = tmp.values
+                    self[key[0]] = tmp.values
                         
                     if key[0] == 'spc':
-                        obj.ga.wavelength = obj.ga.wavelength[where]
-                        obj.ga.n_wl = len(obj.ga.wavelength)
+                        self.ga.wavelength = self.ga.wavelength[where]
+                        self.ga.n_wl = len(self.ga.wavelength)
+                    
+                    self.__update__()
+                    return self
                 else:
                     warnings.warn('key error')
             elif isinstance(key[0], (int,list,np.ndarray,slice,np.integer)):
@@ -563,16 +583,15 @@ class spc(pd.DataFrame):
                     else slice(k.start, k.stop-1, k.step) if isinstance(k, slice)
                     else slice(k, k, 1)
                     for k in key))
-                obj = obj.loc[key,:]
+                return self.loc[key,:].__ipdate__()
             else:
                 for i_key in key: # needs to be improved!
                     obj = obj.__getitem__(i_key)
             
         else:
-            obj = pd.DataFrame.__getitem__(obj,key)
-        obj.__update__()
-        self.__update__()
-        return obj
+            return pd.DataFrame.__getitem__(self,key).__update__()
+
+        
         
     def __delitem__(self, key):
         self.__update__()
